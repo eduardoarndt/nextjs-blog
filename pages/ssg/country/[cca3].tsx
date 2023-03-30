@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Layout from "../../../components/layout";
-import { Country } from "../../../domain/country";
+import { Country, CountryCode } from "../../../domain/country";
 import { getAllCountryCodes, getCountry } from "../../../lib/countries";
 
 type CountryPageProps = {
@@ -21,7 +21,15 @@ export default function CountryPage({ country }: CountryPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllCountryCodes();
+  const countryCodes = await getAllCountryCodes();
+
+  const paths = countryCodes.map((countryCode: CountryCode) => {
+    return {
+      params: {
+        cca3: countryCode.cca3,
+      },
+    };
+  });
 
   return {
     paths,

@@ -11,13 +11,7 @@ export async function getAllCountryCodes() {
 
   const countryCodes = (await res.json()) as CountryCode[];
 
-  return countryCodes.map((countryCode: CountryCode) => {
-    return {
-      params: {
-        cca3: countryCode.cca3,
-      },
-    };
-  });
+  return countryCodes;
 }
 
 export async function getCountry(countryCode: string) {
