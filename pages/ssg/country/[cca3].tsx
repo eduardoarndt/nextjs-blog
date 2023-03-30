@@ -10,12 +10,12 @@ type CountryPageProps = {
 export default function CountryPage({ country }: CountryPageProps) {
   return (
     <Layout home={false}>
+      <p>{`CCA3 Code: ${country.cca3}`}</p>
       <p>{`Official Name: ${country.name.official}`}</p>
       <p>{`Common Name: ${country.name.common}`}</p>
       <p>{`Capital: ${country.capital[0]}`}</p>
       <p>{`Region: ${country.region}`}</p>
       <p>{`Subregion: ${country.subregion}`}</p>
-      <p>{`CCA3 Code: ${country.cca3}`}</p>
     </Layout>
   );
 }
