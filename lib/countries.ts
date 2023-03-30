@@ -5,6 +5,10 @@ export async function getAllCountryCodes() {
     method: "GET",
   });
 
+  if (!res.ok) {
+    throw { status: res.status, text: res.statusText };
+  }
+
   const countryCodes = (await res.json()) as CountryCode[];
 
   return countryCodes.map((countryCode: CountryCode) => {
@@ -17,14 +21,23 @@ export async function getAllCountryCodes() {
 }
 
 export async function getCountry(countryCode: string) {
-  const res = await fetch(
-    `https://restcountries.com/v3.1/alpha/${countryCode}?fields=name%2Cregion%2Csubregion%2Ccapital%2Ccca3`,
-    {
-      method: "GET",
+  try {
+    const res = await fetch(
+      `https://restcountries.com/v3.1/alpha/${countryCode}?fields=name%2Cregion%2Csubregion%2Ccapital%2Ccca3`,
+      {
+        method: "GET",
+      }
+    );
+
+    if (!res.ok) {
+      throw { status: res.status, text: res.statusText };
     }
-  );
 
-  const country = (await res.json()) as Country;
+    const country = (await res.json()) as Country;
 
-  return country;
+    return country;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
