@@ -17,12 +17,21 @@ export default function Home({ countryCodes }: HomeProps) {
           <title>{siteTitle}</title>
         </Head>
         {countryCodes.map((countryCode) => (
-          <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Link href={"/ssg/country/" + countryCode.cca3}>
+              {countryCode.cca3} (static generation)
+            </Link>
             <Link href={"/ssr/country/" + countryCode.cca3}>
-              {countryCode.cca3}
+              {countryCode.cca3} (ssr generation)
             </Link>
             <br />
-          </>
+          </div>
         ))}
       </>
     </Layout>
