@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
 import Layout from "../../../../components/layout";
 import { Country, CountryCode } from "../../../../domain/country";
 import { getAllCountryCodes, getCountry } from "../../../../lib/countries";
@@ -39,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 
