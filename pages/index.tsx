@@ -1,49 +1,41 @@
-import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Layout, { siteTitle } from "../components/layout";
-import { CountryCode } from "../domain/country";
-import { getAllCountryCodes } from "../lib/countries";
 
-type HomeProps = {
-  countryCodes: CountryCode[];
-};
-
-export default function Home({ countryCodes }: HomeProps) {
+export default function Home() {
   return (
     <Layout home>
       <>
         <Head>
           <title>{siteTitle}</title>
         </Head>
-        {countryCodes.map((countryCode) => (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <Link href={"/ssg/country/" + countryCode.cca3}>
-              {countryCode.cca3} (static generation)
-            </Link>
-            <Link href={"/ssr/country/" + countryCode.cca3}>
-              {countryCode.cca3} (ssr generation)
-            </Link>
-            <br />
-          </div>
-        ))}
+        {/* links to all pages... */}
+        <>
+          <h2>SSG & SSR</h2>
+          <Link href={"/ssg/country/BRA"}>
+            Static Generation: /ssg/country/BRA
+          </Link>
+          <br />
+          <Link href={"/ssr/country/BRA"}>
+            Server-side Rendering: /ssr/country/BRA
+          </Link>
+          <h2>ISR</h2>
+          <Link href={"/isr/country/fallback/BRA"}>
+            Incremental Static Generation: /isr/country/fallback/BRA
+            (pre-rendered at built time)
+          </Link>
+          <br />
+          <Link href={"/isr/country/fallback/BEL"}>
+            Incremental Static Generation: /isr/country/BEL (fallback)
+          </Link>
+          <br />
+          <Link href={"/isr/country/regeneration/HRV"}>
+            Incremental Static Generation: /isr/country/HRV ("re"generation)
+          </Link>
+          <h2>SSG without data, with client-side fetching</h2>
+          <Link href={"/csf/country"}>/csf/country</Link>
+        </>
       </>
     </Layout>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const countryCodes = await getAllCountryCodes();
-
-  return {
-    props: {
-      countryCodes,
-    },
-  };
-};

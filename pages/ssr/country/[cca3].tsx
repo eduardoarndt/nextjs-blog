@@ -16,6 +16,8 @@ export default function CountryPage({ country }: CountryPageProps) {
       <p>{`Capital: ${country.capital[0]}`}</p>
       <p>{`Region: ${country.region}`}</p>
       <p>{`Subregion: ${country.subregion}`}</p>
+      <br />
+      <em>This page has been compiled by the server during runtime!</em>
     </Layout>
   );
 }
@@ -23,15 +25,5 @@ export default function CountryPage({ country }: CountryPageProps) {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const country = await getCountry(params?.cca3 as string);
 
-  if (!country) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      country,
-    },
-  };
+  return country ? { props: { country } } : { notFound: true };
 };

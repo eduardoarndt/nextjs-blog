@@ -1,7 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import Layout from "../../../components/layout";
-import { Country, CountryCode } from "../../../domain/country";
-import { getAllCountryCodes, getCountry } from "../../../lib/countries";
+import { useRouter } from "next/router";
+import Layout from "../../../../components/layout";
+import { Country, CountryCode } from "../../../../domain/country";
+import { getAllCountryCodes, getCountry } from "../../../../lib/countries";
 
 type CountryPageProps = {
   country: Country;
@@ -17,7 +18,10 @@ export default function CountryPage({ country }: CountryPageProps) {
       <p>{`Region: ${country.region}`}</p>
       <p>{`Subregion: ${country.subregion}`}</p>
       <br />
-      <em>This page has been compiled at build time!</em>
+      <em>
+        This page is being pre-rendered every time it gets olders than 60
+        seconds!
+      </em>
     </Layout>
   );
 }
@@ -35,16 +39,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const country = await getCountry(params?.cca3 as string);
 
-  return {
-    props: {
-      country,
-    },
-  };
+  return country ? { props: { country }, revalidate: 60 } : { notFound: true };
 };
