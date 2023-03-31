@@ -10,18 +10,23 @@ export default function CountryPage() {
   );
 
   if (error) return <div>failed to load</div>;
-  if (!country) return <div>loading...</div>;
 
   return (
     <Layout>
-      <p>{`CCA3 Code: ${country.cca3}`}</p>
-      <p>{`Official Name: ${country.name.official}`}</p>
-      <p>{`Common Name: ${country.name.common}`}</p>
-      <p>{`Capital: ${country.capital[0]}`}</p>
-      <p>{`Region: ${country.region}`}</p>
-      <p>{`Subregion: ${country.subregion}`}</p>
-      <br />
-      <em>This page has been compiled at runtime by the client!</em>
+      {!country ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <p>{`CCA3 Code: ${country.cca3}`}</p>
+          <p>{`Official Name: ${country.name.official}`}</p>
+          <p>{`Common Name: ${country.name.common}`}</p>
+          <p>{`Capital: ${country.capital[0]}`}</p>
+          <p>{`Region: ${country.region}`}</p>
+          <p>{`Subregion: ${country.subregion}`}</p>
+          <br />
+          <em>This page has been compiled at runtime by the client!</em>
+        </>
+      )}
     </Layout>
   );
 }
