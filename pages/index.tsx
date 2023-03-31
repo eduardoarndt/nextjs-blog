@@ -4,20 +4,19 @@ import Layout, { siteTitle } from "../components/layout";
 
 export default function Home() {
   return (
-    <Layout home>
+    <Layout>
       <>
         <Head>
           <title>{siteTitle}</title>
         </Head>
-        {/* links to all pages... */}
         <>
           <h2>SSG & SSR</h2>
-          <Link href={"/ssg/country/BRA"}>
-            Static Generation: /ssg/country/BRA
+          <Link href={"/ssg/country/PER"}>
+            Static Generation: /ssg/country/PER
           </Link>
           <br />
-          <Link href={"/ssr/country/BRA"}>
-            Server-side Rendering: /ssr/country/BRA
+          <Link href={"/ssr/country/TUN"}>
+            Server-side Rendering: /ssr/country/TUN
           </Link>
           <h2>ISR</h2>
           <Link href={"/isr/country/fallback/BRA"}>
@@ -25,8 +24,8 @@ export default function Home() {
             (pre-rendered at built time)
           </Link>
           <br />
-          <Link href={"/isr/country/fallback/BEL"}>
-            Incremental Static Generation: /isr/country/BEL (fallback)
+          <Link href={"/isr/country/fallback/POL"}>
+            Incremental Static Generation: /isr/country/POL (fallback)
           </Link>
           <br />
           <Link href={"/isr/country/regeneration/HRV"}>

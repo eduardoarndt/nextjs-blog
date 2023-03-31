@@ -10,7 +10,7 @@ type SearchResultPageProps = {
 
 export default function SearchResult({ country }: SearchResultPageProps) {
   return (
-    <Layout home={false}>
+    <Layout>
       <SearchBar />
       <>
         <p>{`CCA3 Code: ${country.cca3}`}</p>

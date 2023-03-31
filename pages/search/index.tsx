@@ -3,7 +3,7 @@ import SearchBar from "../../components/searchBar";
 
 export default function Search() {
   return (
-    <Layout home={false}>
+    <Layout>
       <SearchBar />
     </Layout>
   );

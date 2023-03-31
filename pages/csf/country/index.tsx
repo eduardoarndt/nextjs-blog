@@ -13,7 +13,7 @@ export default function CountryPage() {
   if (!country) return <div>loading...</div>;
 
   return (
-    <Layout home={false}>
+    <Layout>
       <p>{`CCA3 Code: ${country.cca3}`}</p>
       <p>{`Official Name: ${country.name.official}`}</p>
       <p>{`Common Name: ${country.name.common}`}</p>
