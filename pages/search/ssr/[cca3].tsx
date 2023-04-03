@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
-import Layout from "../../components/layout";
-import SearchBar from "../../components/searchBar";
-import { Country } from "../../domain/country";
-import { getCountry } from "../../lib/countries";
+import Layout from "../../../components/layout";
+import SearchBar from "../../../components/searchBar";
+import { Country } from "../../../domain/country";
+import { getCountry } from "../../../lib/countries";
 
 type SearchResultPageProps = {
   country: Country;
@@ -11,7 +11,7 @@ type SearchResultPageProps = {
 export default function SearchResult({ country }: SearchResultPageProps) {
   return (
     <Layout>
-      <SearchBar />
+      <SearchBar linkTo="/search/ssr/" />
       <>
         <p>{`CCA3 Code: ${country.cca3}`}</p>
         <p>{`Official Name: ${country.name.official}`}</p>

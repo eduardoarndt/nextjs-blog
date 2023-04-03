@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function SearchBar() {
+type SearchBarProps = {
+  linkTo: string;
+};
+
+export default function SearchBar({ linkTo }: SearchBarProps) {
   const [input, setInput] = useState("");
 
   return (
@@ -12,7 +16,7 @@ export default function SearchBar() {
         id={"search"}
         onChange={(e) => setInput(e.target.value)}
       />
-      <Link href={"/search/" + input}>
+      <Link href={linkTo + input}>
         <button>GO</button>
       </Link>
     </div>
