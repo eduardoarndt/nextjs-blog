@@ -10,29 +10,58 @@ export default function Home() {
           <title>{siteTitle}</title>
         </Head>
         <>
-          <h2>SSG & SSR</h2>
-          <Link href={"/ssg/country/PER"}>
-            Static Generation: /ssg/country/PER
-          </Link>
-          <br />
-          <Link href={"/ssr/country/TUN"}>
-            Server-side Rendering: /ssr/country/TUN
-          </Link>
-          <h2>ISR</h2>
-          <Link href={"/isr/country/fallback/BRA"}>
-            Incremental Static Generation: /isr/country/fallback/BRA
-            (pre-rendered at built time)
-          </Link>
-          <br />
-          <Link href={"/isr/country/fallback/POL"}>
-            Incremental Static Generation: /isr/country/POL (fallback)
-          </Link>
-          <br />
-          <Link href={"/isr/country/regeneration/HRV"}>
-            Incremental Static Generation: /isr/country/HRV ("re"generation)
-          </Link>
-          <h2>SSG without data, with client-side fetching</h2>
-          <Link href={"/csf/country"}>/csf/country</Link>
+          <h2>Static Generation (SSG)</h2>
+          <ul>
+            <li>Without data - this page itself!</li>
+            <li>
+              <Link href={"/ssg/country/PER"}>With data</Link>
+            </li>
+          </ul>
+
+          <h2>Incremental Static Generation (IRS)</h2>
+          <ul>
+            <li>
+              <Link href={"/isr/country/fallback/BRA"}>
+                Fallback (rendered at built time)
+              </Link>
+            </li>
+            <li>
+              <Link href={"/isr/country/fallback/POL"}>
+                Fallback (rendered at runtime)
+              </Link>
+            </li>
+            <li>
+              <Link href={"/isr/country/regeneration/HRV"}>"Re"generation</Link>
+            </li>
+          </ul>
+
+          <h2>Client-side Fetching/Rendering (CSR)</h2>
+          <ul>
+            <li>
+              <Link href={"/csf/country"}>
+                Fetch country information by client-side
+              </Link>
+            </li>
+          </ul>
+
+          <h2>Server-side Rendering (SSR)</h2>
+          <ul>
+            <li>
+              <Link href={"/ssr/country/TUN"}>Tunisia</Link>
+            </li>
+          </ul>
+
+          <h2>Search Examples</h2>
+          <ul>
+            <li>
+              <Link href={"/search/ssg"}>
+                Static Generation + Fallback + Regeneration
+              </Link>
+            </li>
+            <li>
+              <Link href={"/search/ssr"}>Server-side Rendering</Link>
+            </li>
+          </ul>
         </>
       </>
     </Layout>

@@ -50,5 +50,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const country = await getCountry(params?.cca3 as string);
 
-  return { props: { country } };
+  return { props: { country }, revalidate: 60 };
 };
