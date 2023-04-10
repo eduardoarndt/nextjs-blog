@@ -11,7 +11,7 @@ type SearchResultPageProps = {
 export default function SearchResult({ country }: SearchResultPageProps) {
   return (
     <Layout>
-      <SearchBar linkTo="/search/ssr/" />
+      <SearchBar linkTo="/search/ssr/" initialInputValue={country.cca3} />
       <>
         <p>{`CCA3 Code: ${country.cca3}`}</p>
         <p>{`Official Name: ${country.name.official}`}</p>

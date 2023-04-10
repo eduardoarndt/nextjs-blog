@@ -23,7 +23,7 @@ export default function SearchResult({ country }: SearchResultPageProps) {
 
   return (
     <Layout>
-      <SearchBar linkTo="/search/ssg/" />
+      <SearchBar linkTo="/search/ssg/" initialInputValue={country.cca3} />
       {country ? (
         <>
           <p>{`CCA3 Code: ${country.cca3}`}</p>
