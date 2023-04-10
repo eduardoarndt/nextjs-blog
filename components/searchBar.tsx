@@ -13,7 +13,7 @@ export default function SearchBar({
   const [input, setInput] = useState(initialInputValue);
 
   return (
-    <div>
+    <>
       <p>Search the website for countries</p>
       <input
         type={"search"}
@@ -24,6 +24,6 @@ export default function SearchBar({
       <Link href={linkTo + input}>
         <button>GO</button>
       </Link>
-    </div>
+    </>
   );
 }

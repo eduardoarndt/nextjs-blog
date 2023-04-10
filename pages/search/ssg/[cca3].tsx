@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import Layout from "../../../components/layout";
 import SearchBar from "../../../components/searchBar";
 import { Country } from "../../../domain/country";
@@ -25,7 +26,11 @@ export default function SearchResult({ country }: SearchResultPageProps) {
     <Layout>
       {country ? (
         <>
-          <SearchBar linkTo="/search/ssg/" initialInputValue={country.cca3} />
+          <SearchBar
+            linkTo="/search/ssg/"
+            initialInputValue={country.cca3}
+            key={country.cca3}
+          />
           <p>{`CCA3 Code: ${country.cca3}`}</p>
           <p>{`Official Name: ${country.name.official}`}</p>
           <p>{`Common Name: ${country.name.common}`}</p>
@@ -34,7 +39,10 @@ export default function SearchResult({ country }: SearchResultPageProps) {
           <p>{`Subregion: ${country.subregion}`}</p>
         </>
       ) : (
-        <p>Not found!</p>
+        <>
+          <SearchBar linkTo="/search/ssg/" />
+          <p>Not found!</p>
+        </>
       )}
     </Layout>
   );
